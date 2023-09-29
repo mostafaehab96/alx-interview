@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+
+
 """Algorithm for pascal triangle"""
 
 # Factorials dict for memoization and performance
