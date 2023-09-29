@@ -36,6 +36,7 @@ def coefficients(n):
 
 
 def pascal_triangle(n):
+    """Returns the pascal triangle using all above functions"""
     result = []
     for i in range(n):
         result.append(coefficients(i))
