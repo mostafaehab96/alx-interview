@@ -24,16 +24,14 @@ def canUnlockAll(boxes):
     :return:
         True if all boxes can be unlocked False otherwise
     """
+    all_boxes = all([type(box) is list for box in boxes]) if (type(boxes) is
+                                                              list) else False
 
-    if type(boxes) is not list or len(boxes) == 0:
-        return False
-
+    if not all_boxes: return False
     i = 0
     unlocked = {0}
 
     while i < len(unlocked):
-        if type(boxes[i]) is not list:
-            return False
         keys = look_inside(boxes[i], len(boxes))
         unlocked.update(keys)
         i += 1
