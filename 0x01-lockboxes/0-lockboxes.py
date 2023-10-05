@@ -26,7 +26,7 @@ def canUnlockAll(boxes: list):
     """
 
     if len(boxes) == 0:
-        return True
+        return False
     i = 0
     unlocked = {0}
 
