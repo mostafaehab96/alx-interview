@@ -25,8 +25,9 @@ def canUnlockAll(boxes: list):
         True if all boxes can be unlocked False otherwise
     """
 
-    if len(boxes) == 0:
+    if type(boxes) is not list or len(boxes) == 0:
         return False
+
     i = 0
     unlocked = {0}
 
