@@ -24,6 +24,9 @@ def canUnlockAll(boxes: list):
     :return:
         True if all boxes can be unlocked False otherwise
     """
+
+    if len(boxes) == 0:
+        return True
     i = 0
     unlocked = {0}
 
