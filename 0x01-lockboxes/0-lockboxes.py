@@ -16,7 +16,7 @@ def look_inside(box, count):
     return {key for key in box if key < count}
 
 
-def canUnlockAll(boxes: list):
+def canUnlockAll(boxes):
     """
     Determines if it is possible to unlock all the boxes in a list of boxes
     by following their contained keys.
@@ -32,6 +32,8 @@ def canUnlockAll(boxes: list):
     unlocked = {0}
 
     while i < len(unlocked):
+        if type(boxes[i]) is not list:
+            return False
         keys = look_inside(boxes[i], len(boxes))
         unlocked.update(keys)
         i += 1
