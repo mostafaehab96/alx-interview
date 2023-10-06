@@ -2,18 +2,16 @@
 """Solving lock boxes problem"""
 
 
-def look_inside(box, count):
-    """Looks inside a box and returns a list of keys that are less than the
-    specified count.
+def update_keys(box, count, keys):
+    """Looks inside a box and updates a list of keys that can open the boxes
 
     Args:
-        box: A set of keys.
+        box: A list of keys.
         count: The number of boxes we have.
-
-    Returns:
-        A list of keys that are less than the specified count.
     """
-    return {key for key in box if key < count}
+    for key in box:
+        if key < count and key not in keys:
+            keys.append(key)
 
 
 def canUnlockAll(boxes):
@@ -25,11 +23,10 @@ def canUnlockAll(boxes):
         True if all boxes can be unlocked False otherwise
     """
     i = 0
-    unlocked = {0}
+    unlocked = [0]
 
     while i < len(unlocked):
-        keys = look_inside(boxes[i], len(boxes))
-        unlocked.update(keys)
+        update_keys(boxes[unlocked[i]], len(boxes), unlocked)
         i += 1
         if len(unlocked) == len(boxes):
             return True
