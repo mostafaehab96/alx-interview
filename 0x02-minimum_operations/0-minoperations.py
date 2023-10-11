@@ -4,7 +4,7 @@
 from math import sqrt
 
 
-def prime_factor(n):
+def is_prime(n):
     """
     Determines whether n is a prime number
     :param n: (int)
@@ -12,19 +12,19 @@ def prime_factor(n):
     is prime or not, second element is the lowest factor of the number
     """
     if n <= 3:
-        return True, 1
+        return True
 
     if n % 2 == 0:
-        return False, 2
+        return False
 
     for i in range(3, round(sqrt(n)) + 1, 2):
         if n % i == 0:
-            return False, i
+            return False
 
-    return True, 1
+    return True
 
 
-def minOperations(n, i=0):
+def minOperations(n):
     """You can execute only two operations in this file: Copy All and Paste.
     this method calculates the fewest number of operations needed to result in
     exactly n H characters in a file"""
@@ -32,12 +32,19 @@ def minOperations(n, i=0):
     if n <= 0:
         return 0
 
-    check_n = prime_factor(n)
-    if check_n[0]:
+    if is_prime(n):
         return n
-    lowest_factor = check_n[1]
 
-    if prime_factor(n // lowest_factor)[0]:
-        return lowest_factor + ((n - lowest_factor) // lowest_factor) + 1 + i
-    else:
-        return minOperations(n // lowest_factor, i + 1) + 1
+    h_count = 1
+    adder = 0
+    count = 0
+    while h_count < n:
+        if n % h_count == 0:
+            adder = h_count
+            h_count += adder
+            count += 2
+        else:
+            h_count += adder
+            count += 1
+
+    return count
