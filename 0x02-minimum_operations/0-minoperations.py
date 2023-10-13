@@ -29,7 +29,7 @@ def minOperations(n):
     this method calculates the fewest number of operations needed to result in
     exactly n H characters in a file"""
 
-    if n <= 0:
+    if n <= 1:
         return 0
 
     if is_prime(n):
