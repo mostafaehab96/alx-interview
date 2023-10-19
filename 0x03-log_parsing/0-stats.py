@@ -14,10 +14,10 @@ counter = 0
 
 def print_info():
     """Printing log info to the stdout"""
-    print(f"File size: {files_size}")
+    print("File size: {}".format(files_size))
     for code in status_codes:
         if codes_count.get(code, False):
-            print(f"{code}: {codes_count[code]}")
+            print("{}: {}".format(code, codes_count[code]))
 
 
 while True:
