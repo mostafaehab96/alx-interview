@@ -2,14 +2,17 @@
 """a script that reads stdin line by line and computes metrics"""
 
 import re
+from typing import List, Dict
 
-pattern = (r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[\d{4}-\d{2}-\d{2} \d{'
-           r'2}:\d{2}:\d{2}\.\d{6}\] "GET /projects/260 HTTP/1.1" \d{3} \d+')
+pattern: str = (r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[\d{4}-\d{2}-\d{2} '
+                r'\d{'
+                r'2}:\d{2}:\d{2}\.\d{6}\] "GET /projects/260 HTTP/1.1" \d{3} '
+                r'\d+')
 
-files_size = 0
-status_codes = [200, 301, 400, 401, 403, 404, 405, 500]
-codes_count = {}
-counter = 0
+files_size: int = 0
+status_codes: List[int] = [200, 301, 400, 401, 403, 404, 405, 500]
+codes_count: Dict[int, int] = {}
+counter: int = 0
 
 
 def print_info():
