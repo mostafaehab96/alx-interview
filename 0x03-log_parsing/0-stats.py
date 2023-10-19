@@ -26,8 +26,7 @@ def print_info():
 
 if __name__ == "__main__":
     try:
-        for line in sys.stdin:
-            log_line: str = input()
+        for log_line in sys.stdin:
             counter += 1
             if re.match(pattern, log_line):
                 splitted: List[str] = log_line.split()
