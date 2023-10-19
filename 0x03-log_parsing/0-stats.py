@@ -25,12 +25,12 @@ def print_info():
 
 while True:
     try:
-        log_line = input()
+        log_line: str = input()
         counter += 1
         if re.match(pattern, log_line):
-            splitted = log_line.split()
-            status = int(splitted[7])
-            size = int(splitted[8])
+            splitted: List[str] = log_line.split()
+            status: int = int(splitted[7])
+            size: int = int(splitted[8])
             files_size += size
             if status in status_codes:
                 codes_count[status] = codes_count.get(status, 0) + 1
