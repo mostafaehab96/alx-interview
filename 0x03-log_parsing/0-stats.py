@@ -1,14 +1,8 @@
 #!/usr/bin/python3
 """a script that reads stdin line by line and computes metrics"""
 
-import re
 import sys
 from typing import List, Dict
-
-pattern: str = (r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[\d{4}-\d{2}-\d{2} '
-                r'\d{'
-                r'2}:\d{2}:\d{2}\.\d{6}\] "GET /projects/260 HTTP/1.1" \d{3} '
-                r'\d+')
 
 files_size: int = 0
 status_codes: List[int] = [200, 301, 400, 401, 403, 404, 405, 500]
@@ -28,14 +22,16 @@ if __name__ == "__main__":
     try:
         for log_line in sys.stdin:
             counter += 1
-            if re.match(pattern, log_line):
-                splitted: List[str] = log_line.split()
-                status: int = int(splitted[7])
-                size: int = int(splitted[8])
+            splitted: List[str] = log_line.split()
+            if len(splitted) > 4:
+                status: int = int(splitted[-2])
+                size: int = int(splitted[-1])
                 files_size += size
                 if status in status_codes:
                     codes_count[status] = codes_count.get(status, 0) + 1
             if counter % 10 == 0:
                 print_info()
-    except KeyboardInterrupt:
+    except Exception:
+        pass
+    finally:
         print_info()
