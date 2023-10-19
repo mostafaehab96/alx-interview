@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-"""a script that reads stdin line by line and computes metrics"""
 
+
+"""a script that reads stdin line by line and computes metrics"""
 import re
 
 pattern = (r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[\d{4}-\d{2}-\d{2} \d{'
