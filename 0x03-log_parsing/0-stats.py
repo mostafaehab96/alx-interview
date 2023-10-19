@@ -23,18 +23,21 @@ def print_info():
             print("{}: {}".format(code, codes_count[code]))
 
 
-while True:
-    try:
-        log_line: str = input()
-        counter += 1
-        if re.match(pattern, log_line):
-            splitted: List[str] = log_line.split()
-            status: int = int(splitted[7])
-            size: int = int(splitted[8])
-            files_size += size
-            if status in status_codes:
-                codes_count[status] = codes_count.get(status, 0) + 1
-        if counter % 10 == 0:
+if __name__ == "__main__":
+    while True:
+        try:
+            log_line: str = input()
+            counter += 1
+            if re.match(pattern, log_line):
+                splitted: List[str] = log_line.split()
+                status: int = int(splitted[7])
+                size: int = int(splitted[8])
+                files_size += size
+                if status in status_codes:
+                    codes_count[status] = codes_count.get(status, 0) + 1
+            if counter % 10 == 0:
+                print_info()
+        except Exception:
+            pass
+        finally:
             print_info()
-    except KeyboardInterrupt:
-        print_info()
