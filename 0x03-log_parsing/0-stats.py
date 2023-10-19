@@ -37,7 +37,5 @@ if __name__ == "__main__":
                     codes_count[status] = codes_count.get(status, 0) + 1
             if counter % 10 == 0:
                 print_info()
-        except Exception:
-            pass
-        finally:
+        except KeyboardInterrupt:
             print_info()
