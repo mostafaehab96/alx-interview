@@ -21,7 +21,6 @@ def print_info():
 if __name__ == "__main__":
     try:
         for log_line in sys.stdin:
-            counter += 1
             splitted: List[str] = log_line.split()
             if len(splitted) > 4:
                 status: int = int(splitted[-2])
@@ -29,6 +28,7 @@ if __name__ == "__main__":
                 files_size += size
                 if status in status_codes:
                     codes_count[status] = codes_count.get(status, 0) + 1
+                counter += 1
             if counter % 10 == 0:
                 print_info()
     except Exception:
