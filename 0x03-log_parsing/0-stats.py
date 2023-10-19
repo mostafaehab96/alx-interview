@@ -2,6 +2,7 @@
 """a script that reads stdin line by line and computes metrics"""
 
 import re
+import sys
 from typing import List, Dict
 
 pattern: str = (r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[\d{4}-\d{2}-\d{2} '
@@ -24,8 +25,8 @@ def print_info():
 
 
 if __name__ == "__main__":
-    while True:
-        try:
+    try:
+        for line in sys.stdin:
             log_line: str = input()
             counter += 1
             if re.match(pattern, log_line):
@@ -37,5 +38,5 @@ if __name__ == "__main__":
                     codes_count[status] = codes_count.get(status, 0) + 1
             if counter % 10 == 0:
                 print_info()
-        except KeyboardInterrupt:
-            print_info()
+    except KeyboardInterrupt:
+        print_info()
