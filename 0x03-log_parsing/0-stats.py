@@ -11,15 +11,6 @@ codes_count: Dict[int, int] = {}
 counter: int = 0
 
 
-def is_IP(line: str) -> bool:
-    """Checks if the line is a valid ip address."""
-    try:
-        ipaddress.ip_address(line)
-        return True
-    except ValueError:
-        return False
-
-
 def print_info():
     """Printing log info to the stdout"""
     print("File size: {}".format(files_size))
@@ -28,15 +19,23 @@ def print_info():
             print("{}: {}".format(code, codes_count[code]))
 
 
+def parseInt(num: str) -> int:
+    """Converts a string to integer is available."""
+    result = 0
+    try:
+        result = int(num)
+        return result
+    except ValueError:
+        return result
+
+
 if __name__ == "__main__":
     try:
         for log_line in sys.stdin:
             splitted: List[str] = log_line.split()
             if len(splitted) > 4:
-                if not is_IP(splitted[0]):
-                    continue
-                status: int = int(splitted[-2])
-                size: int = int(splitted[-1])
+                status: int = parseInt(splitted[-2])
+                size: int = parseInt(splitted[-1])
                 files_size += size
                 if status in status_codes:
                     codes_count[status] = codes_count.get(status, 0) + 1
