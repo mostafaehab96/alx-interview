@@ -3,11 +3,21 @@
 
 import sys
 from typing import List, Dict
+import ipaddress
 
 files_size: int = 0
 status_codes: List[int] = [200, 301, 400, 401, 403, 404, 405, 500]
 codes_count: Dict[int, int] = {}
 counter: int = 0
+
+
+def is_IP(line: str) -> bool:
+    """Checks if the line is a valid ip address."""
+    try:
+        ipaddress.ip_address(line)
+        return True
+    except ValueError:
+        return False
 
 
 def print_info():
@@ -23,6 +33,8 @@ if __name__ == "__main__":
         for log_line in sys.stdin:
             splitted: List[str] = log_line.split()
             if len(splitted) > 4:
+                if not is_IP(splitted[0]):
+                    continue
                 status: int = int(splitted[-2])
                 size: int = int(splitted[-1])
                 files_size += size
