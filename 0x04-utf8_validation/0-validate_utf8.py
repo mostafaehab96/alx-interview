@@ -10,15 +10,25 @@ def validUTF8(data: List[int]) -> bool:
     :param data: a list of integers representing characters
     :return: True if all characters are utf8 valid, False otherwise
     """
-    for num in data:
-        if num in range(0, 128):
-            continue
-        binary = bin(num)[2::].zfill(8)
-        if num in range(128, 2028) and binary[:3] != '110':
-            return False
-        if num in range(2048, 65536) and binary[:4] != '1110':
-            return False
-        if num in range(65536, 1114112) and binary[:5] != '11110':
-            return False
+    bytes_to_check = 0
 
-        return True
+    for num in data:
+        binary = format(num, '#010b')[-8:]
+
+        if bytes_to_check == 0:
+            if binary[0] == '0':
+                continue
+            elif binary.startswith('110'):
+                bytes_to_check = 1
+            elif binary.startswith('1110'):
+                bytes_to_check = 2
+            elif binary.startswith('11110'):
+                bytes_to_check = 3
+            else:
+                return False
+        else:
+            if not binary.startswith('10'):
+                return False
+            bytes_to_check -= 1
+
+    return bytes_to_check == 0
