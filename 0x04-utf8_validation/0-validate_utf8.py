@@ -5,7 +5,7 @@
 from typing import List
 
 
-def validUTF8(data: List) -> bool:
+def validUTF8(data: List[int]) -> bool:
     """
     :param data: a list of integers representing characters
     :return: True if all characters are utf8 valid, False otherwise
@@ -13,7 +13,7 @@ def validUTF8(data: List) -> bool:
     for num in data:
         if num in range(0, 128):
             continue
-        binary = bin(num)[2::]
+        binary = bin(num)[2::].zfill(8)
         if num in range(128, 2028) and binary[:3] != '110':
             return False
         if num in range(2048, 65536) and binary[:4] != '1110':
