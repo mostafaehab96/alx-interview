@@ -12,7 +12,7 @@ def validUTF8(data: List) -> bool:
     """
     for num in data:
         if num in range(0, 128):
-            return True
+            continue
         binary = bin(num)[2::]
         if num in range(128, 2028) and binary[:3] != '110':
             return False
