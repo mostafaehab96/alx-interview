@@ -14,11 +14,11 @@ def validUTF8(data: List) -> bool:
         if num in range(0, 128):
             return True
         binary = bin(num)[2::]
-        if num in range(128, 2028) and binary[:3] == '110':
-            return True
-        if num in range(2048, 65536) and binary[:4] == '1110':
-            return True
-        if num in range(65536, 1114112) and binary[:5] == '11110':
-            return True
+        if num in range(128, 2028) and binary[:3] != '110':
+            return False
+        if num in range(2048, 65536) and binary[:4] != '1110':
+            return False
+        if num in range(65536, 1114112) and binary[:5] != '11110':
+            return False
 
-        return False
+        return True
