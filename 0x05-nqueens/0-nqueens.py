@@ -26,7 +26,7 @@ def solve_util(board, row, n, res):
         return True
 
     for col in range(n):
-        if is_safe(board, row, col, n):
+        if is_safe(board, row, col):
             board[row] = [row, col]
             solve_util(board, row + 1, n, res)
             board[row] = [-1, -1]
