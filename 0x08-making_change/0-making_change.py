@@ -2,9 +2,12 @@
 
 """Solving change coins problem"""
 
+from typing import List
 
-def makeChange(coins, total):
-    """Calculates the minimum number of coins needed to make the total amount"""
+
+def makeChange(coins: List[int], total: int) -> int:
+    """Calculates the minimum number of coins
+    needed to make the total amount"""
     dp = [total + 1] * (total + 1)
     dp[0] = 0
 
