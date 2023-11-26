@@ -3,6 +3,7 @@
 """Solving change coins problem"""
 
 from typing import List
+import time
 
 
 def makeChange(coins: List[int], total: int) -> int:
@@ -11,6 +12,7 @@ def makeChange(coins: List[int], total: int) -> int:
 
     if total < 0:
         return -1
+
     dp = [total + 1] * (total + 1)
     dp[0] = 0
 
