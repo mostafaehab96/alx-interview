@@ -8,6 +8,9 @@ from typing import List
 def makeChange(coins: List[int], total: int) -> int:
     """Calculates the minimum number of coins
     needed to make the total amount"""
+
+    if total < 0:
+        return -1
     dp = [total + 1] * (total + 1)
     dp[0] = 0
 
