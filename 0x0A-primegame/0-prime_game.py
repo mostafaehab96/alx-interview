@@ -69,6 +69,8 @@ def isWinner(x, nums):
     winnings = {"Maria": 0, "Ben": 0}
 
     for round in range(x):
+        if round >= len(nums):
+            round = 0
         winner = round_winner(nums[round])
         winnings[winner] += 1
 
