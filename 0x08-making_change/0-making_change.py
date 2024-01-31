@@ -3,6 +3,7 @@
 """Solving change coins problem"""
 from typing import List
 
+
 def makeChange(coins: List[int], total: int) -> int:
     """Calculates the minimum amount of coins needed to make the total"""
 
@@ -16,6 +17,5 @@ def makeChange(coins: List[int], total: int) -> int:
         for c in coins:
             if a - c >= 0:
                 db[a] = min(db[a], db[a - c] + 1)
-
 
     return db[total] if db[total] != (total + 1) else -1
